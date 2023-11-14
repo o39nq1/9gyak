@@ -39,5 +39,17 @@ namespace _9gyak.Controllers
             context.Jokes.Add(újVicc);
             context.SaveChanges();
         }
+
+        // DELETE api/jokes/5
+        [HttpDelete("{id}")]
+        public void Delete(int id)
+        {
+            FunnyDatabaseContext context = new FunnyDatabaseContext();
+            var törlendőVicc = (from x in context.Jokes
+                                where x.JokeSk == id
+                                select x).FirstOrDefault();
+            context.Remove(törlendőVicc);
+            context.SaveChanges();
+        }
     }
 }
